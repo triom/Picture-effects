@@ -1,2 +1,2 @@
-# Rock-paper-Scisors
-Rock paper Scisors with javascript
+# picture effect
+create effects on a picture with javascript
