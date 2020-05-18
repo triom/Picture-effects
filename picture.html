@@ -1,0 +1,111 @@
+<html>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+<title>Picture Editing</title>
+<head>
+	<style >
+		img{
+
+			transition: 1s;
+			
+		}
+		#word{
+			position: absolute;
+			top: 30%;
+			left: 20%;
+			transform: translate(-50%, -50%);
+			color: white;
+			font-size: 250%;
+		}
+
+		#div1 {
+   					 width: 350px;
+    				 height: 500px;
+    				 padding: 10px;
+    				 border: 3px solid red;
+
+	</style>
+</head>
+<body>
+<div class="row " >
+ 	<div class="col-sm-6">
+ 		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+ 
+
+
+		<span id="display"></span>
+<p><img draggable="true" id = 'smt' src = "smt.png" name = "smt"  ondragstart="drag(event)" width="300px" length ="300px"><span id="word"></span></div>
+<br><br>
+
+<button onclick="Rounded()">Image rounded</button> 
+
+<button onclick="BW()">Turn black and white</button>
+
+<button onclick="opacity()">Apply another effect</button>
+
+<button onclick="saturate()">Saturate</button>
+<br><br>
+
+
+	<input id = "namet" type="text" name="name">
+	<button onclick="carry()">Add</button>
+
+
+<script type="text/javascript">
+	function Rounded(){
+		console.log("rounded");
+		document.getElementById('smt').style.cssText='border-radius: 60px';
+		document.getElementById('display').innerHTML = "Image rounded";
+	}
+
+
+	function BW(){
+		console.log("BW");
+		document.getElementById('smt').style.cssText = 'filter:grayscale(100%)';
+		document.getElementById('display').innerHTML = "Image set to black & white";
+	}
+
+	function opacity(){
+		console.log("opacity");
+		document.getElementById('smt').style.cssText = 'opacity: 0.5';
+		document.getElementById('display').innerHTML = "Image opacity changed";
+	}
+
+	function saturate(){
+		console.log("saturate");
+		document.getElementById('smt').style.cssText = 'filter:saturate(7) ';
+		document.getElementById('display').innerHTML = "Image saturated";
+	}
+
+	function carry(){
+		let name = document.getElementById('namet').value;
+		console.log(name);
+		document.getElementById('word').innerHTML = name;
+
+	}
+
+	function allowDrop(ev) {
+		console.log("allow");
+    	ev.preventDefault();
+    	
+	}
+
+	function drag(ev) {
+		console.log("take");
+   		ev.dataTransfer.setData("text", ev.target.id);
+   		document.getElementById('smt').style.cssText = 'filter:grayscale(100%)';
+	}
+
+	function drop(ev) {
+		console.log("put");
+    	ev.preventDefault();
+    	var data = ev.dataTransfer.getData("text");
+    	ev.target.appendChild(document.getElementById(data));
+
+	}
+
+</script>
+
+</body>
+
+</html>
